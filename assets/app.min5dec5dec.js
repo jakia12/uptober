@@ -101,13 +101,13 @@
     scrollWatcherRun() {
       document.documentElement.classList.add("watcher"),
         this.scrollWatcherConstructor(
-          document.querySelectorAll("[data-watch]"),
+          document.querySelectorAll("[data-watch]")
         );
     }
     scrollWatcherConstructor(t) {
       if (t.length) {
         this.scrollWatcherLogging(
-          `Прокинувся, стежу за об'єктами (${t.length})...`,
+          `Прокинувся, стежу за об'єктами (${t.length})...`
         ),
           r(
             Array.from(t).map(function (t) {
@@ -122,8 +122,10 @@
                   : (e = 1),
                   t.setAttribute("data-watch-threshold", e.toFixed(2));
               }
-              return `${t.dataset.watchRoot ? t.dataset.watchRoot : null}|${t.dataset.watchMargin ? t.dataset.watchMargin : "0px"}|${t.dataset.watchThreshold ? t.dataset.watchThreshold : 0}`;
-            }),
+              return `${
+                t.dataset.watchRoot ? t.dataset.watchRoot : null
+              }|${t.dataset.watchMargin ? t.dataset.watchMargin : "0px"}|${t.dataset.watchThreshold ? t.dataset.watchThreshold : 0}`;
+            })
           ).forEach((e) => {
             let s = e.split("|"),
               o = { root: s[0], margin: s[1], threshold: s[2] },
@@ -151,7 +153,7 @@
           ? (e.root = document.querySelector(t.root))
           : "null" !== t.root &&
             this.scrollWatcherLogging(
-              `Эмм... батьківського об'єкта ${t.root} немає на сторінці`,
+              `Эмм... батьківського об'єкта ${t.root} немає на сторінці`
             ),
         (e.rootMargin = t.margin),
         !(t.margin.indexOf("px") < 0 && t.margin.indexOf("%") < 0))
@@ -163,7 +165,7 @@
         return (e.threshold = t.threshold), e;
       }
       this.scrollWatcherLogging(
-        "йой, налаштування data-watch-margin потрібно задавати в PX або %",
+        "йой, налаштування data-watch-margin потрібно задавати в PX або %"
       );
     }
     scrollWatcherCreate(t) {
@@ -182,12 +184,12 @@
         ? (!e.classList.contains("_watcher-view") &&
             e.classList.add("_watcher-view"),
           this.scrollWatcherLogging(
-            `Я бачу ${e.classList}, додав клас _watcher-view`,
+            `Я бачу ${e.classList}, додав клас _watcher-view`
           ))
         : (e.classList.contains("_watcher-view") &&
             e.classList.remove("_watcher-view"),
           this.scrollWatcherLogging(
-            `Я не бачу ${e.classList}, прибрав клас _watcher-view`,
+            `Я не бачу ${e.classList}, прибрав клас _watcher-view`
           ));
     }
     scrollWatcherOff(t, e) {
@@ -204,7 +206,7 @@
           t.isIntersecting &&
           this.scrollWatcherOff(s, e),
         document.dispatchEvent(
-          new CustomEvent("watcherCallback", { detail: { entry: t } }),
+          new CustomEvent("watcherCallback", { detail: { entry: t } })
         );
     }
   })({});
@@ -219,7 +221,7 @@
   }, 0);
   async function d() {
     try {
-      const t = "FTdv5ZzZXBwM5wER9jrrHN2uqrTUZu4WBTuubNnYpump";
+      const t = "0x10101bacF50AA7Bb668e92D8ddda52E9E04d9a10";
       await navigator.clipboard.writeText(t),
         alert("Address copied successfully");
     } catch (t) {
@@ -274,8 +276,8 @@
         "last" === t || t >= s.children.length
           ? s.append(e)
           : "first" !== t
-            ? s.children[t].before(e)
-            : s.prepend(e);
+          ? s.children[t].before(e)
+          : s.prepend(e);
     }
     moveBack(t, e, s) {
       e.classList.remove(this.daClassname),
@@ -291,22 +293,22 @@
               ? t.place === e.place
                 ? 0
                 : "first" === t.place || "last" === e.place
-                  ? -1
-                  : "last" === t.place || "first" === e.place
-                    ? 1
-                    : 0
-              : t.breakpoint - e.breakpoint,
+                ? -1
+                : "last" === t.place || "first" === e.place
+                ? 1
+                : 0
+              : t.breakpoint - e.breakpoint
           )
         : t.sort((t, e) =>
             t.breakpoint === e.breakpoint
               ? t.place === e.place
                 ? 0
                 : "first" === t.place || "last" === e.place
-                  ? 1
-                  : "last" === t.place || "first" === e.place
-                    ? -1
-                    : 0
-              : e.breakpoint - t.breakpoint,
+                ? 1
+                : "last" === t.place || "first" === e.place
+                ? -1
+                : 0
+              : e.breakpoint - t.breakpoint
           );
     }
   })("max").init();
